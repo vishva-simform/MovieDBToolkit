@@ -4,10 +4,10 @@ import React from 'react';
 import { TabButton } from '../components';
 import { TabScreens } from '../constants';
 import { applicationStyle } from '../theme';
-import type { ItemType } from './Types';
+import type { ItemType, TabBarParamList } from './Types';
 
 const Routes = () => {
-  const Tab = createBottomTabNavigator();
+  const Tab = createBottomTabNavigator<TabBarParamList>();
 
   return (
     <NavigationContainer>
