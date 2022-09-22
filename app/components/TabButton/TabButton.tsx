@@ -1,5 +1,5 @@
 import React, { type FC } from 'react';
-import { TouchableOpacity, TouchableOpacityProps } from 'react-native';
+import { TouchableOpacity, type TouchableOpacityProps } from 'react-native';
 import { applicationStyle } from '../../theme';
 import { TabBarIcon } from '../TabBarIcon';
 import type { TabButtonPropType } from './Types';

@@ -1,6 +1,6 @@
 import { StyleSheet } from 'react-native';
-import { Colors, moderateScale, verticalScale } from '../theme';
-import { Metrics } from './Metrics';
+import Colors from './Colors';
+import { Metrics, moderateScale, verticalScale } from './Metrics';
 
 const applicationStyle = StyleSheet.create({
   main: {
