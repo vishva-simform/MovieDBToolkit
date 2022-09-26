@@ -1,8 +1,6 @@
-import type { FC } from 'react';
-
-interface TabScreensType {
-  route: string;
-  icon: number;
-  component: FC;
+interface FilterListType {
+  id: number;
+  name: string;
+  identifier?: string;
 }
-export type { TabScreensType };
+export type { FilterListType };
