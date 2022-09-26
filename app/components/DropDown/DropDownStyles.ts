@@ -11,7 +11,7 @@ export const styles = StyleSheet.create({
     position: 'absolute',
     right: 0,
     backgroundColor: Colors.lightGreen,
-    borderRadius: 20,
+    borderRadius: moderateScale(20),
     borderWidth: moderateScale(1),
   },
   dropDownButton: {
@@ -22,7 +22,7 @@ export const styles = StyleSheet.create({
     width: horizontalScale(145),
     paddingVertical: verticalScale(4),
     paddingHorizontal: horizontalScale(15),
-    borderRadius: 15,
+    borderRadius: moderateScale(15),
   },
   dropDownListItem: {
     paddingVertical: verticalScale(8),
