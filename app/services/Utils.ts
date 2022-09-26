@@ -1,5 +1,10 @@
+import axios from 'axios';
 import type { ResultType } from '../components/List';
 import { Colors } from '../theme';
+
+export const apiConfig = axios.create({
+  baseURL: 'https://api.themoviedb.org/3',
+});
 
 // function to get color of circular indicator according to rate and date of that movie/tv show
 export const getListItemData = (data: ResultType) => {

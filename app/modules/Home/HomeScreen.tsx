@@ -1,17 +1,27 @@
-import React, { type FC } from 'react';
+import React, { useEffect, type FC } from 'react';
 import { SafeAreaView, ScrollView } from 'react-native';
+import { useDispatch, useSelector } from 'react-redux';
 import { Icons, MockData } from '../../assets';
 import { Header, LatestTrailer, List } from '../../components';
 import {
+  EndPoints,
   freeToWatch,
   latestTrailer,
   popularListFilter,
   Strings,
   Trending,
 } from '../../constants';
+import { fetchPopularMovieList, type RootState } from '../../redux';
 import { styles } from './Styles';
 
 const HomeScreen: FC = () => {
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(fetchPopularMovieList(`${EndPoints.popularMovieEndPoint}`));
+  }, [dispatch]);
+  const popularMovieData = useSelector(
+    (state: RootState) => state?.popularMovies?.popularMovieList,
+  );
   return (
     <SafeAreaView style={styles.container}>
       <Header
@@ -22,7 +32,7 @@ const HomeScreen: FC = () => {
       <ScrollView bounces={false}>
         <List
           listTitle={Strings.whatsPopular}
-          movieList={MockData.movieList}
+          movieList={popularMovieData}
           filterList={popularListFilter}
         />
         <List

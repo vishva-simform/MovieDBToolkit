@@ -69,7 +69,7 @@ const List: FC<ListProp> = ({ listTitle, movieList, filterList }) => {
           horizontal={true}
           contentContainerStyle={styles.movieListContainer}
           keyExtractor={(item, index) => `${item.id}-${index}`}
-          data={movieList?.results ?? []}
+          data={movieList ?? []}
           renderItem={listItem}
         />
       </View>

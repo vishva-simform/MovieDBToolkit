@@ -1,4 +1,6 @@
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
+import type { RootState } from '..';
+import { getData } from '../../services';
 import type { InitialStateType } from './Types';
 
 const STATUSES = {
@@ -6,36 +8,40 @@ const STATUSES = {
   ERROR: 'error',
   LOADING: 'loading',
 };
+
 export const initialState: InitialStateType = {
   popularMovieList: [],
   popularPage: 1,
+  status: STATUSES.LOADING,
 };
-export const fetchTodoList = createAsyncThunk('todos/fetch', async () => {
-  const res = await fetch('https://jsonplaceholder.typicode.com/todos');
-  const data = await res.json();
-  return data;
-});
+
+export const fetchPopularMovieList = createAsyncThunk(
+  'popularMovies/fetch',
+  async payload => {
+    const fetchedData = await getData(payload);
+    const {
+      data: { results: apiData, page },
+      status,
+    } = fetchedData;
+    return apiData;
+  },
+);
 
 export const popularMovieSlice = createSlice({
-  name: 'popularMovie',
+  name: 'popularMovies',
   initialState,
-  reducers: {
-    increment: (state: InitialStateType, action: PayloadAction<number>) => {
-      state.value += Number(action?.payload);
-    },
-    decrement: (state: InitialStateType, action: PayloadAction<number>) => {
-      state.value -= Number(action?.payload);
-    },
-  },
+  reducers: {},
   extraReducers: builder => {
-    builder.addCase(fetchTodoList.pending, state => {
+    builder.addCase(fetchPopularMovieList.pending, state => {
       state.status = STATUSES.LOADING;
     });
-    builder.addCase(fetchTodoList.fulfilled, (state, action) => {
+    builder.addCase(fetchPopularMovieList.fulfilled, (state, action) => {
+      console.log(action);
+
       state.status = STATUSES.IDLE;
-      state.todos = action?.payload;
+      state.popularMovieList = action?.payload;
     });
-    builder.addCase(fetchTodoList.rejected, state => {
+    builder.addCase(fetchPopularMovieList.rejected, state => {
       state.status = STATUSES.ERROR;
     });
   },
