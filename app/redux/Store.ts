@@ -1,7 +1,10 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { combineReducers, configureStore } from '@reduxjs/toolkit';
 import { persistReducer, persistStore } from 'redux-persist';
+import { freeToWatchMovieReducer } from './FreeToWatch';
 import { popularMovieReducer } from './PopularMovies';
+import { latestTrailerReducer } from './LatestTrailer';
+import { trendingReducer } from './Trending';
 
 const persistConfig = {
   key: 'Moviedbtoolkitdemo',
@@ -9,6 +12,9 @@ const persistConfig = {
 };
 const rootReducer = combineReducers({
   popularMovies: popularMovieReducer,
+  freeToWatchMovies: freeToWatchMovieReducer,
+  latestTrailers: latestTrailerReducer,
+  trendingMovies: trendingReducer,
 });
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);

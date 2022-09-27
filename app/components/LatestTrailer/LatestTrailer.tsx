@@ -62,7 +62,7 @@ const LatestTrailer = ({
 
       <FlatList
         horizontal
-        data={movieList?.results ?? []}
+        data={movieList ?? []}
         keyExtractor={(item, index) => `${item.id}-${index}`}
         renderItem={listItem}
       />
